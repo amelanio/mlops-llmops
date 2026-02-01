@@ -1,0 +1,10 @@
+mlflow
+fastapi
+uvicorn
+scikit-learn
+pandas
+numpy
+transformers
+torch
+python-dotenv
+requests
