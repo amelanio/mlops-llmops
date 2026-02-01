@@ -8,18 +8,14 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score
 
 def get_data():
     """Carga y devuelve el dataset de reviews de Bebes (Baby_5.json)."""
-    # Buscamos el archivo en el directorio actual
     path = os.path.join(os.path.dirname(__file__), 'Baby_5.json')
     
-    # Cargamos 10000 filas para que sea manejable pero representativo
     df = pd.read_json(path, lines=True, chunksize=10000)
     df = next(df)
     
-    # Seleccionamos columnas relevantes y limpiamos
     df = df[['reviewText', 'overall']].copy()
     df = df.dropna(subset=['reviewText'])
     
-    # 4 o 5 estrellas = Positivo (1), el resto = Negativo (0)
     df['target'] = (df['overall'] > 3).astype(int)
     
     return df
